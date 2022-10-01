@@ -1,7 +1,10 @@
 package appoptics
 
 import (
+	"encoding/json"
 	"fmt"
+
+	log "github.com/sirupsen/logrus"
 )
 
 // Alert defines a policy for sending alarms to services when conditions are met
@@ -128,6 +131,8 @@ func (as *AlertsService) Create(a *AlertRequest) (*Alert, error) {
 // Update updates the Alert
 func (as *AlertsService) Update(a *AlertRequest) error {
 	path := fmt.Sprintf("alerts/%d", a.ID)
+	mar, _ := json.Marshal(a)
+	log.Printf("[POLESZCZ] Dumping AlertRequest: %s", string(mar))
 	req, err := as.client.NewRequest("PUT", path, a)
 	if err != nil {
 		return err
