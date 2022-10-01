@@ -118,6 +118,8 @@ func (c *Client) NewRequest(method, path string, body interface{}) (*http.Reques
 	if err != nil {
 		return nil, err
 	}
+	mar, _ := json.Marshal(body)
+	log.Printf("[POLESZCZ][NewRequest] Dumping Body: %s", string(mar))
 
 	requestURL := c.baseURL.ResolveReference(rel)
 
