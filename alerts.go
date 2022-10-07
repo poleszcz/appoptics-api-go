@@ -95,6 +95,7 @@ func (as *AlertsService) List() (*AlertsListResponse, error) {
 
 // Retrieve returns the Alert identified by the parameter
 func (as *AlertsService) Retrieve(id int) (*Alert, error) {
+	log.Printf("[POLESZCZ] Retrieve alert")
 	alert := &Alert{}
 	path := fmt.Sprintf("alerts/%d", id)
 	req, err := as.client.NewRequest("GET", path, nil)
