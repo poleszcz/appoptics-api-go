@@ -12,7 +12,7 @@ type Alert struct {
 	ID           int                    `json:"id,omitempty"`
 	Name         string                 `json:"name,omitempty"`
 	Description  string                 `json:"description,omitempty"`
-	Active       *bool                  `json:"active"`
+	Active       *bool                  `json:"active,omitempty"`
 	RearmSeconds int                    `json:"rearm_seconds,omitempty"`
 	Conditions   []*AlertCondition      `json:"conditions,omitempty"`
 	Attributes   map[string]interface{} `json:"attributes,omitempty"`
@@ -26,7 +26,7 @@ type AlertRequest struct {
 	ID           int                    `json:"id,omitempty"`
 	Name         string                 `json:"name,omitempty"`
 	Description  string                 `json:"description,omitempty"`
-	Active       *bool                  `json:"active"`
+	Active       *bool                  `json:"active,omitempty"`
 	RearmSeconds int                    `json:"rearm_seconds,omitempty"`
 	Conditions   []*AlertCondition      `json:"conditions,omitempty"`
 	Attributes   map[string]interface{} `json:"attributes,omitempty"`
@@ -134,6 +134,7 @@ func (as *AlertsService) Update(a *AlertRequest) error {
 	path := fmt.Sprintf("alerts/%d", a.ID)
 	mar, _ := json.Marshal(a)
 	log.Printf("[POLESZCZ] Dumping AlertRequest: %s", string(mar))
+
 	req, err := as.client.NewRequest("PUT", path, a)
 	if err != nil {
 		return err
