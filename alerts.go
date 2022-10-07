@@ -12,7 +12,7 @@ type Alert struct {
 	ID           int                    `json:"id,omitempty"`
 	Name         string                 `json:"name,omitempty"`
 	Description  string                 `json:"description,omitempty"`
-	Active       bool                   `json:"active,omitempty"`
+	Active       *bool                  `json:"active,omitempty"`
 	RearmSeconds int                    `json:"rearm_seconds,omitempty"`
 	Conditions   []*AlertCondition      `json:"conditions,omitempty"`
 	Attributes   map[string]interface{} `json:"attributes,omitempty"`
